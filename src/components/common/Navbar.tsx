@@ -49,16 +49,8 @@ const Navbar: React.FC = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
   const handleDrawerToggle = () => {
     setDrawerOpen((prev) => !prev);
-  };
-
-  const toggleSearch = () => {
-    setShowSearch((prev) => !prev);
   };
 
   useEffect(() => {
@@ -79,8 +71,8 @@ const Navbar: React.FC = () => {
         borderBottom: "none",
       }}
     >
-      <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ minHeight: { xs: 60, md: 84 }, py: 1 }}>
+      <Container maxWidth="2xl" >
+        <Toolbar disableGutters sx={{ minHeight: { xs: 60, md: 84 }, py: 2 }}>
           {/* Hamburger Menu for Mobile */}
           <Box sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}>
             <IconButton
@@ -100,7 +92,9 @@ const Navbar: React.FC = () => {
               display: "flex",
               alignItems: "center",
               mr: 2,
+              ml: 3,
               flexShrink: 0,
+
             }}
             onClick={() => navigate("/")}
           >
@@ -128,6 +122,8 @@ const Navbar: React.FC = () => {
                   whiteSpace: "nowrap",
                   minWidth: "auto",
                   px: 1.5,
+                  fontSize:"18px",
+                  textTransform: "none",
                 }}
                 onClick={() => {
                   navigate(link.path || "/");
@@ -187,7 +183,7 @@ const Navbar: React.FC = () => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                ml: 1,
+                // ml: 1,
                 cursor: "pointer",
               }}
               onClick={handleProfileMenuOpen}
@@ -204,6 +200,7 @@ const Navbar: React.FC = () => {
                 }}
               >
                 <ProfileIcon />
+                
               </IconButton>
               {!isMobile && (
                 <span

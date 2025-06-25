@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, useTheme, useMediaQuery } from "@mui/material";
 
 const Carousel = () => {
   const [images] = useState([
@@ -10,6 +10,9 @@ const Carousel = () => {
   ]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,14 +24,21 @@ const Carousel = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
+  // Determine carousel height based on screen size
+  const getCarouselHeight = () => {
+    if (isMobile) return "30vh";
+    if (isTablet) return "60vh";
+    return "70vh";
+  };
+
   return (
-    <Box>
+    <Box sx={{ maxWidth: "100vw", overflow: "hidden" }}>
       {/* Image container */}
       <Box
         sx={{
           position: "relative",
           width: "100%",
-          height: "70vh",
+          height: getCarouselHeight(),
           overflow: "hidden",
           margin: "0 auto",
         }}
@@ -60,7 +70,7 @@ const Carousel = () => {
       {/* Indicators shown below image */}
       <Box
         sx={{
-          mt: 2,
+          mt: isMobile ? 1 : 2,
           display: "flex",
           justifyContent: "center",
           gap: "8px",
@@ -74,12 +84,13 @@ const Carousel = () => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               sx={{
-                width: isActive ? "12px" : "8px",
-                height: isActive ? "12px" : "8px",
+                width: isActive ? (isMobile ? "10px" : "12px") : isMobile ? "6px" : "8px",
+                height: isActive ? (isMobile ? "10px" : "12px") : isMobile ? "6px" : "8px",
                 borderRadius: "50%",
                 backgroundColor: isActive ? "#002482" : "grey.500",
                 textAlign: "center",
                 transition: "all 0.3s ease-in-out",
+                cursor: "pointer",
                 "&:hover": {
                   backgroundColor: isActive ? "primary.dark" : "grey.600",
                 },
