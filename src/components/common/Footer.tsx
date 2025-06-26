@@ -101,7 +101,7 @@ const Footer = () => {
         gutterBottom
         fontWeight="bold"
         sx={{
-          fontSize: "20px",
+          fontSize: "24px",
         }}
       >
         {title}
@@ -113,7 +113,7 @@ const Footer = () => {
             sx={{
               p: 0,
               mb: 1,
-              fontSize: "12px",
+              fontSize: "18px",
             }}
           >
             <Link href="#" color="inherit" underline="hover">
@@ -135,41 +135,51 @@ const Footer = () => {
         borderTop: "1px solid #e0e0e0",
       }}
     >
+      {/* Responsive logo and title */}
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          ml: { xs: 1, sm: 4 },
+          flexDirection: { xs: "column", sm: "row" },
+          ml: { xs: 0, sm: 4 },
           mr: 1,
           flexShrink: 0,
           mb: { xs: 2, sm: 6 },
           mt: { xs: 1, sm: 2 },
+          textAlign: { xs: "center", sm: "left" },
         }}
       >
         <img
           src={footerLogo}
           alt="Logo"
           style={{
-            height: "100%",
-            maxHeight: isXs ? 28 : 40,
-            width: "auto",
+            height: isXs ? "48px" : "64px",
+            width: isXs ? "56px" : "76px",
           }}
           loading="lazy"
         />
         <Typography
           variant={isXs ? "h5" : "h4"}
           sx={{
-            ml: 2,
+            ml: { xs: 0, sm: 3 },
+            mt: { xs: 1, sm: 0 },
             fontWeight: "bold",
-            fontSize: { xs: "1.3rem", sm: "2rem" },
+            fontSize: { xs: "1.3rem", sm: "64px" },
           }}
         >
           Globex
         </Typography>
       </Box>
 
-      <Container maxWidth="lg">
-        <Grid container spacing={6} alignItems="flex-start">
+      <Container maxWidth="xl" sx={{ px: { xs: 1, sm: 2, md: 4 } }}>
+        <Grid
+          container
+          spacing={{ xs: 2, sm: 3, md: 6 }}
+          marginLeft={{ xs: 0, sm: 2, md: 4 }}
+          alignItems="flex-start"
+          marginBottom={{ xs: 2, sm: 4, md: 8 }}
+        >
+          {/* Responsive columns */}
           {Object.entries(FOOTER_LINKS).map(([title, links]) =>
             renderLinkColumn({
               title: capitalize(title),
@@ -188,15 +198,16 @@ const Footer = () => {
               flexDirection: "column",
               justifyContent: "flex-start",
               alignItems: { xs: "flex-start", md: "flex-end" },
+              // width: "100%",
             }}
           >
-            <Box>
+            <Box sx={{ width: { xs: "100%", md: "100%" } }}>
               <Typography
                 variant="h6"
                 gutterBottom
                 fontWeight="bold"
                 sx={{
-                  fontSize: { xs: "1rem", sm: "1.1rem", md: "20px" },
+                  fontSize: { xs: "1rem", sm: "1.1rem", md: "24px" },
                 }}
               >
                 Stay In Touch
@@ -206,14 +217,14 @@ const Footer = () => {
                 sx={{
                   whiteSpace: "normal",
                   wordBreak: "break-word",
-                  fontSize: "12px",
+                  fontSize: { xs: "14px", sm: "16px", md: "18px" },
                 }}
               >
                 Stay in touch to get special offers, free giveaways <br />
                 and once in a lifetime deals
               </Typography>
 
-              <Box component="form" sx={{ mt: 2 }}>
+              <Box component="form" sx={{ mt: 2, width: "100%" }}>
                 <StyledTextField
                   variant="outlined"
                   size="small"
@@ -233,10 +244,12 @@ const Footer = () => {
         </Grid>
       </Container>
 
+      {/* Responsive bottom bar */}
       <Box
         sx={{
           mt: { xs: 2, sm: 4 },
-          pt: 2,
+          pt: 4,
+          pb: 2,
           fontSize: { xs: "0.75rem", sm: "0.8rem" },
           borderTop: "1px solid #e0e0e0",
           display: "flex",
@@ -248,12 +261,32 @@ const Footer = () => {
           textAlign: "center",
         }}
       >
-        <Link href="#" color="inherit" underline="hover" sx={{ mx: 1 }}>
-          Terms & Conditions
-        </Link>
-        <Link href="#" color="inherit" underline="hover" sx={{ mx: 1 }}>
-          Privacy Policy
-        </Link>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: "center",
+            gap: { xs: 1, sm: 2 },
+            mb: { xs: 1, sm: 0 },
+          }}
+        >
+          <Link
+            href="#"
+            color="inherit"
+            underline="hover"
+            sx={{ mx: 1, fontSize: { xs: "16px", sm: "18px" } }}
+          >
+            Terms & Conditions
+          </Link>
+          <Link
+            href="#"
+            color="inherit"
+            underline="hover"
+            sx={{ mx: 1, fontSize: { xs: "16px", sm: "18px" } }}
+          >
+            Privacy Policy
+          </Link>
+        </Box>
         <Box sx={{ mt: { xs: 1, sm: 0 } }}>
           {SOCIAL_ICONS.map(({ icon, label }) => (
             <IconButton
@@ -263,6 +296,9 @@ const Footer = () => {
                 color: "#fff",
                 mx: 0.5,
                 p: { xs: "6px", sm: "8px" },
+                "& svg": {
+                  fontSize: { xs: "1.5rem", sm: "2rem" },
+                },
               }}
             >
               {icon}

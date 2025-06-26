@@ -59,9 +59,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
             </InputAdornment>
           ),
           sx: {
+              // height:"52px",
             backgroundColor: '#f5f5f5', // Grey background
             borderRadius: 2,
-            minWidth: 300,
+            minWidth: 400,
             '& .MuiOutlinedInput-notchedOutline': {
               border: 'none', // Remove border
             },
