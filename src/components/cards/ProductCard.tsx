@@ -1,72 +1,86 @@
-import React from 'react';
+import React from "react";
 import {
-    Card,
-    CardMedia,
-    CardContent,
-    Typography,
-    Box,
-    Stack
-} from '@mui/material';
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Box,
+  Stack,
+  Chip,
+} from "@mui/material";
+import type { ProductData } from "../../pages/Home";
 
 const ProductCard = ({
-    imageSrc,
-    title,
-    brand,
-    rating,
-    price,
-    originalPrice,
-    discount
-}) => {
-    return (
-        <Card
+  imageSrc,
+  title,
+  brand,
+  rating,
+  price,
+  originalPrice,
+  discount,
+}: ProductData) => {
+  return (
+    <Card
+      sx={{
+        maxWidth: "38vh",
+        minHeight: "40vh",
+        borderRadius: 8,
+        boxShadow: 3,
+        marginLeft: 4,
+        marginTop: 5,
+        marginBottom: 5,
+                transition: "transform 0.3s",
+        "&:hover": { transform: "scale(1.02)" },
+      }}
+    >
+      <CardMedia
+        component="img"
+        image={imageSrc}
+        alt={title}
+        sx={{ objectFit: "cover", minHeight: 301 }}
+      />
+      <CardContent>
+        <Typography variant="subtitle1" fontSize={24} fontWeight={700}>
+          {title}
+        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
+          <Typography variant="body2" color="text.secondary">
+            {brand}
+          </Typography>
+          <Typography variant="body2" sx={{ ml: 1, color: "text.primary" }}>
+            {rating} ⭐
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
+          <Typography variant="body1" sx={{ fontWeight: "bold", mr: 1 }}>
+            Rs.{price}
+          </Typography>
+          <Typography
+            variant="body2"
             sx={{
-                width: 321,
-                minHeight: 455,
-                borderRadius: 2,
-                boxShadow: 3,
-                marginLeft: 10,
-                marginTop: 5,
-                marginBottom: 5,
-                transition: 'transform 0.3s',
-                '&:hover': { transform: 'scale(1.02)' }
+              textDecoration: "line-through",
+              color: "text.secondary",
+              mr: 1,
             }}
-        >
-            <CardMedia
-                component="img"
-                height="300"
-                image={imageSrc}
-                alt={title}
-                sx={{ objectFit: 'cover' }}
-            />
-            <CardContent>
-                <Typography variant="subtitle1" fontWeight={600}>
-                    {title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {brand}
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 0.5 }}>
-                    {rating} ⭐
-                </Typography>
-
-                <Box mt={1} display="flex" alignItems="baseline" gap={1}>
-                    <Typography variant="h6" color="text.primary">
-                        Rs. {price}
-                    </Typography>
-                    {originalPrice && (
-                        <Typography variant="body2" sx={{ textDecoration: 'line-through', color: 'gray' }}>
-                            Rs. {originalPrice}
-                        </Typography>
-                    )}
-                    {discount && (
-                        <Typography variant="body2" sx={{ color: 'green', fontWeight: 600 }}>
-                            ({discount}% off)
-                        </Typography>
-                    )}
-                </Box>
-            </CardContent>
-        </Card>
-    );
+          >
+            Rs.{originalPrice}
+          </Typography>
+          (
+          <Chip
+            label={`${discount}% off`}
+            size="small"
+            sx={{
+              backgroundColor: "#f5f5f5",
+              color: " #0A8200",
+              fontSize: "0.75rem",
+              height: "20px",
+            }}
+          />
+          )
+        </Box>
+      </CardContent>
+    </Card>
+  );
 };
 
 export default ProductCard;
