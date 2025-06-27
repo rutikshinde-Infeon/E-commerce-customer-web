@@ -9,6 +9,7 @@ import {
   Chip,
 } from "@mui/material";
 import type { ProductData } from "../../pages/Home";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({
   imageSrc,
@@ -19,25 +20,33 @@ const ProductCard = ({
   originalPrice,
   discount,
 }: ProductData) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // navigate(`/product-detail`);
+  };
   return (
     <Card
       sx={{
-        maxWidth: "38vh",
-        minHeight: "40vh",
-        borderRadius: 8,
+        maxWidth: "410px",
+        minHeight: "420px",
+        borderRadius: "8px",
         boxShadow: 3,
         marginLeft: 4,
         marginTop: 5,
         marginBottom: 5,
-                transition: "transform 0.3s",
+        transition: "transform 0.3s",
         "&:hover": { transform: "scale(1.02)" },
       }}
+      className="product-card"
+      onClick={handleCardClick}
     >
       <CardMedia
         component="img"
         image={imageSrc}
         alt={title}
-        sx={{ objectFit: "cover", minHeight: 301 }}
+        sx={{ objectFit: "cover", maxHeight: 300, width: "100%" }}
+        className="product-image"
       />
       <CardContent>
         <Typography variant="subtitle1" fontSize={24} fontWeight={700}>

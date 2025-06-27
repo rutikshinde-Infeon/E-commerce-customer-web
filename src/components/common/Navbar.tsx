@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -25,6 +25,7 @@ import {
 import { navLogo } from "../../assets/index";
 import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
 const navLinks = [
   { label: "Men", path: "/about" },
@@ -43,7 +44,6 @@ const Navbar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(!isSmallScreen);
-  const open = Boolean(anchorEl);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -65,14 +65,10 @@ const Navbar: React.FC = () => {
       position="static"
       color="default"
       elevation={0}
-      sx={{
-        backgroundColor: "#fff",
-        boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
-        borderBottom: "none",
-      }}
+      className={styles.appBar}
     >
-      <Container maxWidth="2xl" >
-        <Toolbar disableGutters sx={{ minHeight: { xs: 60, md: 84 }, py: 2 }}>
+      <Container maxWidth="1920px" maxHeight="80px">
+        <Toolbar disableGutters className={styles.toolbar}>
           {/* Hamburger Menu for Mobile */}
           <Box sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}>
             <IconButton
@@ -88,43 +84,28 @@ const Navbar: React.FC = () => {
 
           {/* Logo */}
           <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              mr: 2,
-              ml: 3,
-              flexShrink: 0,
-
-            }}
+            className={styles.logoBox}
             onClick={() => navigate("/")}
           >
             <img
               src={navLogo}
               alt="Logo"
-              style={{ height: "100%", maxHeight: 40 }}
+              className={styles.logoImg}
             />
           </Box>
 
           {/* Navigation Links (Desktop) */}
           <Box
+            className={styles.navLinks}
             sx={{
               display: { xs: "none", md: "flex" },
-              flexGrow: 1,
-              justifyContent: "center",
             }}
           >
             {navLinks.map((link) => (
               <Button
                 key={link.label}
                 color="inherit"
-                sx={{
-                  mx: 1,
-                  whiteSpace: "nowrap",
-                  minWidth: "auto",
-                  px: 1.5,
-                  fontSize:"18px",
-                  textTransform: "none",
-                }}
+                className={styles.navButton}
                 onClick={() => {
                   navigate(link.path || "/");
                 }}
@@ -136,9 +117,8 @@ const Navbar: React.FC = () => {
 
           {/* Search Bar */}
           <Box
+            className={styles.searchBarBox}
             sx={{
-              mx: 2,
-              flexGrow: { xs: 1, md: 0 },
               display: { xs: "none", sm: "flex" },
             }}
           >
@@ -147,11 +127,9 @@ const Navbar: React.FC = () => {
 
           {/* Icons */}
           <Box
+            className={styles.iconsBox}
             sx={{
-              display: "flex",
-              alignItems: "center",
               ml: { xs: showSearch ? 0 : 1, md: 2 },
-              flexShrink: 0,
             }}
           >
             <IconButton
@@ -180,12 +158,7 @@ const Navbar: React.FC = () => {
             </IconButton>
             {/* User Name and Profile Icon */}
             <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                // ml: 1,
-                cursor: "pointer",
-              }}
+              className={styles.profileBox}
               onClick={handleProfileMenuOpen}
             >
               <IconButton
@@ -200,17 +173,9 @@ const Navbar: React.FC = () => {
                 }}
               >
                 <ProfileIcon />
-                
               </IconButton>
               {!isMobile && (
-                <span
-                  style={{
-                    marginRight: 8,
-                    marginLeft: 6,
-                    fontWeight: 500,
-                    color: "#222",
-                  }}
-                >
+                <span className={styles.userName}>
                   {userName}
                 </span>
               )}
@@ -238,6 +203,7 @@ const Navbar: React.FC = () => {
             boxSizing: "border-box",
           },
         }}
+        classes={{ paper: styles.drawerPaper }}
       >
         <Box
           sx={{
@@ -251,20 +217,20 @@ const Navbar: React.FC = () => {
           onClick={handleDrawerToggle}
           onKeyDown={handleDrawerToggle}
         >
-          <Box sx={{ display: "flex", justifyContent: "center", mb: 2, px: 2 }}>
-            <img src={navLogo} alt="Logo" style={{ height: 36 }} />
+          <Box className={styles.drawerLogoBox}>
+            <img src={navLogo} alt="Logo" className={styles.drawerLogoImg} />
           </Box>
           <Divider />
-          <List sx={{ flexGrow: 1 }}>
+          <List className={styles.drawerList}>
             {navLinks.map((link) => (
               <ListItem key={link.label} disablePadding>
-                <ListItemButton sx={{ px: 3 }}>
+                <ListItemButton className={styles.drawerListItemButton}>
                   <ListItemText primary={link.label} />
                 </ListItemButton>
               </ListItem>
             ))}
           </List>
-          <Box sx={{ p: 2 }}>
+          <Box className={styles.drawerProfileBox}>
             <Button
               variant="outlined"
               fullWidth
@@ -281,3 +247,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+     
