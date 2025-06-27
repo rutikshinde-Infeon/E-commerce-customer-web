@@ -12,16 +12,16 @@ function BrandCard(props: BrandCardProps) {
   const { image, brandLogo, tagline, priceRange } = props;
 
   return (
-    <Card sx={{ maxWidth: 250, borderRadius: 3, boxShadow: 2 }}>
+    <Card sx={{ maxWidth: 489, borderRadius: 10, boxShadow: 2 }}>
       <CardMedia
         component="img"
-        height="300"
+        height="298"
         image={image}
         alt="Product image"
       />
       <CardContent sx={{ textAlign: "center" }}>
         <Box mb={1}>
-          <img src={brandLogo} alt="Brand logo" style={{ height: 30 }} />
+          <img src={brandLogo} alt="Brand logo" style={{ height: 62 }} />
         </Box>
         <Typography variant="h6">{tagline}</Typography>
         <Typography variant="body2" color="text.secondary">
