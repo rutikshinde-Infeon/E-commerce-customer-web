@@ -29,7 +29,7 @@ const ProductCard = ({
         marginLeft: 4,
         marginTop: 5,
         marginBottom: 5,
-                transition: "transform 0.3s",
+        transition: "transform 0.3s",
         "&:hover": { transform: "scale(1.02)" },
       }}
     >
