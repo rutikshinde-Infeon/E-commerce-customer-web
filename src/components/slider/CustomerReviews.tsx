@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Slider from "react-slick";
 
 type Review = {
   id: number;
@@ -72,17 +73,10 @@ const reviews: Review[] = [
 ];
 
 const CustomerReviews: React.FC = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const [showButtons, setShowButtons] = useState<boolean>(true);
-
-  const scroll = (scrollOffset: number) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft += scrollOffset;
-    }
-  };
 
   // Hide buttons on mobile since we'll show full-width cards
   useEffect(() => {
@@ -102,11 +96,52 @@ const CustomerReviews: React.FC = () => {
     return 180;
   };
 
-  // Determine scroll distance based on screen size
-  const getScrollDistance = (): number => {
-    if (isMobile) return window.innerWidth * 0.9;
-    if (isTablet) return window.innerWidth * 0.7;
-    return 600;
+  // react-slick settings
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: isMobile ? 1 : isTablet ? 2 : 3,
+    slidesToScroll: 1,
+    arrows: showButtons,
+    nextArrow: showButtons ? (
+      <IconButton
+        sx={{
+          position: "absolute",
+          top: "50%",
+          right: 16,
+          zIndex: 2,
+          bgcolor: "grey.900",
+          color: "white",
+          "&:hover": { bgcolor: "grey.800" },
+          borderRadius: "50px",
+          display: isMobile ? "none" : "flex",
+        }}
+      >
+        <ArrowForwardIosIcon />
+      </IconButton>
+    ) : null,
+    prevArrow: showButtons ? (
+      <IconButton
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: 16,
+          zIndex: 2,
+          bgcolor: "grey.900",
+          color: "white",
+          "&:hover": { bgcolor: "grey.800" },
+          borderRadius: "50px",
+          display: isMobile ? "none" : "flex",
+        }}
+      >
+        <ArrowBackIosNewIcon />
+      </IconButton>
+    ) : null,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 600, settings: { slidesToShow: 1 } },
+    ],
   };
 
   return (
@@ -122,124 +157,78 @@ const CustomerReviews: React.FC = () => {
         What Our Customer Says
       </Typography>
 
-      {showButtons && (
-        <>
-          <IconButton
-            onClick={() => scroll(-getScrollDistance())}
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: 16,
-              zIndex: 2,
-              bgcolor: "grey.900",
-              color: "white",
-              "&:hover": { bgcolor: "grey.800" },
-              borderRadius: "50px",
-              display: isMobile ? "none" : "flex",
-            }}
-          >
-            <ArrowBackIosNewIcon />
-          </IconButton>
-
-          <IconButton
-            onClick={() => scroll(getScrollDistance())}
-            sx={{
-              position: "absolute",
-              top: "50%",
-              right: 16,
-              zIndex: 2,
-              bgcolor: "grey.900",
-              color: "white",
-              "&:hover": { bgcolor: "grey.800" },
-              borderRadius: "50px",
-              display: isMobile ? "none" : "flex",
-            }}
-          >
-            <ArrowForwardIosIcon />
-          </IconButton>
-        </>
-      )}
-
-      {/* Scrollable cards container */}
-      <Box
-        ref={scrollRef}
-        sx={{
-          display: "flex",
-          overflowX: "auto",
-          scrollBehavior: "smooth",
-          gap: 3,
-          pb: 2,
-          px: isMobile ? 1 : 0,
-          "&::-webkit-scrollbar": { display: "none" },
-        }}
-      >
-        {reviews.map((review) => (
-          <Paper
-            key={review.id}
-            elevation={3}
-            sx={{
-              height: isMobile ? "auto" : 476,
-              minWidth: getCardWidth(),
-              maxWidth: 900,
-              width: isMobile ? getCardWidth() : "auto",
-              flex: "0 0 auto",
-              textAlign: "center",
-              p: isMobile ? 2 : 3,
-              borderRadius: 2,
-              position: "relative",
-              my: isMobile ? 2 : 0,
-            }}
-          >
-            <Avatar
-              src={review.image}
-              alt="Customer"
-              sx={{
-                width: getAvatarSize(),
-                height: getAvatarSize(),
-                mx: "auto",
-                mb: 2,
-              }}
-            />
-
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="center"
-              spacing={1}
-              sx={{ mb: 2 }}
-            >
-              <Rating
-                value={review.rating}
-                precision={0.5}
-                readOnly
-                size={isMobile ? "small" : "medium"}
+      <Box sx={{ position: "relative" }}>
+        <Slider {...settings}>
+          {reviews.map((review) => (
+            <Box key={review.id} sx={{ px: 1, mx: 8 ,  }}>
+              <Paper
+                elevation={3}
                 sx={{
-                  "& .MuiRating-iconFilled": {
-                    color: "black",
-                  },
+                  height: isMobile ? "auto" : 476,
+                  minWidth: getCardWidth(),
+                  maxWidth: 900,
+                  width: isMobile ? getCardWidth() : "auto",
+                  flex: "0 0 auto",
+                  textAlign: "center",
+                  p: isMobile ? 2 : 3,
+                  borderRadius: 2,
+                  position: "relative",
+                  my: isMobile ? 2 : 0,
+                  mx: "auto",
                 }}
-              />
-              <Typography variant="subtitle1" fontWeight="bold">
-                +{review.count}
-              </Typography>
-            </Stack>
+              >
+                <Avatar
+                  src={review.image}
+                  alt="Customer"
+                  sx={{
+                    width: getAvatarSize(),
+                    height: getAvatarSize(),
+                    mx: "auto",
+                    mb: 2,
+                  }}
+                />
 
-            <Typography
-              variant="body2"
-              mt={2}
-              color="text.primary"
-              sx={{
-                overflow: "hidden",
-                display: "-webkit-box",
-                WebkitLineClamp: isMobile ? 3 : 4,
-                WebkitBoxOrient: "vertical",
-                fontSize: isMobile ? "16px" : "20px",
-              }}
-            >
-              {review.comment}
-            </Typography>
-          </Paper>
-        ))}
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  spacing={1}
+                  sx={{ mb: 2 }}
+                >
+                  <Rating
+                    value={review.rating}
+                    precision={0.5}
+                    readOnly
+                    size={isMobile ? "small" : "medium"}
+                    sx={{
+                      "& .MuiRating-iconFilled": {
+                        color: "black",
+                      },
+                    }}
+                  />
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    +{review.count}
+                  </Typography>
+                </Stack>
+
+                <Typography
+                  variant="body2"
+                  mt={2}
+                  color="text.primary"
+                  sx={{
+                    overflow: "hidden",
+                    display: "-webkit-box",
+                    WebkitLineClamp: isMobile ? 3 : 4,
+                    WebkitBoxOrient: "vertical",
+                    fontSize: isMobile ? "16px" : "20px",
+                  }}
+                >
+                  {review.comment}
+                </Typography>
+              </Paper>
+            </Box>
+          ))}
+        </Slider>
       </Box>
     </Box>
   );
