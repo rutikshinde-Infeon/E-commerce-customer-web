@@ -1,4 +1,4 @@
-.trendingCard {
+/* .trendingCard {
   max-width: "1145px";
   height: "587px";
   border-radius: "12px";
@@ -6,4 +6,14 @@
   box-shadow: 3;
   display: "flex";
   margin: "auto";
+} */
+.trendingCard {
+  width: 100%;
+  max-width: 1146px;
+  height: 587px;
+  margin: auto;
+  box-sizing: border-box;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }

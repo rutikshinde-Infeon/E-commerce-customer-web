@@ -100,6 +100,7 @@ const Home = () => {
 
   const centerSlider = {
     // width: "100%",
+    arrows: true,
     className: "center",
     centerMode: true,
     infinite: true,
@@ -169,29 +170,30 @@ const Home = () => {
           </Slider>
         </Box>
 
-        <Box sx={{ width: "100%" }}>
-          <Typography
-            variant="h5"
-            sx={{ mb: 3, fontWeight: 700, marginLeft: "50px" }}
-          >
-            Trending Offers
-          </Typography>
-          <div className="slider-container">
-            <Slider {...centerSlider}>
-              {trendingData.map((item) => (
-                <div key={item.id}>
-                  <TrendingCard
-                    id={item.id}
-                    brandLogo={item.brandLogo}
-                    discountText={item.discountText}
-                    buttonText={item.buttonText}
-                    imageUrl={item.imageUrl}
-                  />
-                </div>
-              ))}
-            </Slider>
-          </div>
-        </Box>
+        {/* <Box sx={{ width: "90%" }}> */}
+        <Typography
+          variant="h5"
+          sx={{ mb: 3, fontWeight: 700, marginLeft: "50px" }}
+        >
+          Trending Offers
+        </Typography>
+
+        <div className="slider-container">
+          <Slider {...centerSlider}>
+            {trendingData.map((item) => (
+              <div key={item.id}>
+                <TrendingCard
+                  id={item.id}
+                  brandLogo={item.brandLogo}
+                  discountText={item.discountText}
+                  buttonText={item.buttonText}
+                  imageUrl={item.imageUrl}
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
+        {/* </Box> */}
       </Box>
     </>
   );
