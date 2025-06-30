@@ -8,6 +8,7 @@ import ProductSlider from '../components/slider/ProductSlider';
 import { heroBanner } from '../assets';
 import DealSlider from '../components/slider/DealSlider';
 import TrendingSlider from '../components/slider/TrendingSlider';
+import FeaturedBlog from '../components/slider/FeaturedBlog';
 export interface ProductData {
   id: number;
   imageSrc: string;
@@ -86,7 +87,7 @@ const Home = () => {
       </Box>
 
       <Box p={2} className='deal-slider-wrapper'>
-        <Typography variant='h5' sx={{ mb: 2, fontWeight: 600 }}>
+        <Typography variant='h5' sx={{ mb: 3, fontWeight: 700 }}>
           Deals of the Day
         </Typography>
         <DealSlider settings={brandSliderSettings} brandDeals={brandDeals} />
@@ -102,8 +103,20 @@ const Home = () => {
         <TrendingSlider trendingData={trendingData} />
       </Box>
 
-      <CustomerReviews />
-      <FeaturesSection />
+      <Box p={2} className='Review-slider-wrapper'>
+        <Typography variant='h5' sx={{ mb: 3, fontWeight: 700 }}>
+          What Our Customers Say
+        </Typography>
+        <CustomerReviews />
+      </Box>
+
+      <Box p={2} className='Featured-slider-wrapper'>
+        <Typography variant='h5' sx={{ mb: 3, fontWeight: 700 }}>
+          Featured Blogs
+        </Typography>
+        <FeaturedBlog />
+        <FeaturesSection />
+      </Box>
     </>
   );
 };

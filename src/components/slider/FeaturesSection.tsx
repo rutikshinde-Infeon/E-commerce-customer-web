@@ -5,7 +5,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import HeadsetMicOutlinedIcon from "@mui/icons-material/HeadsetMicOutlined";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
-import OutlinedFlagIcon from '@mui/icons-material/OutlinedFlag';
+import OutlinedFlagIcon from "@mui/icons-material/OutlinedFlag";
 
 const features = [
   {
@@ -35,11 +35,14 @@ const features = [
   },
 ];
 
-
 const FeaturesSection = () => {
   return (
-    <Box sx={{ py: 1 }}>
-      <Grid container spacing={{ xs: 3, sm: 4, md: 6, lg: 9 }} justifyContent="center">
+    <Box mb={8}>
+      <Grid
+        container
+        spacing={{ xs: 3, sm: 4, md: 6, lg: 9 }}
+        justifyContent="center"
+      >
         {features.map((feature, idx) => (
           <Grid
             item
@@ -71,7 +74,7 @@ const FeaturesSection = () => {
               <Typography variant="h6" fontWeight="bold" mt={2}>
                 {feature.title}
               </Typography>
-               <Typography variant="body2" mt={1} color="text.secondary">
+              <Typography variant="body2" mt={1} color="text.secondary">
                 {feature.description}
               </Typography>
             </Paper>
