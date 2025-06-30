@@ -6,7 +6,6 @@
 
 .slide-item {
   height: auto;
-  /* min-height: 500px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +16,6 @@
 }
 
 /* hero -carousel CSS */
-
 .hero-carousel-wrapper {
   width: 100%;
   max-width: 100%;
@@ -33,4 +31,36 @@
 .slick-dots li button:before {
   color: rgb(12, 4, 79) !important;
   font-size: 15px !important;
+}
+
+/* trending slider wrapper CSS */
+.trending-slider-wrapper .slider-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.trending-slider-wrapper .slide-item {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+  transform: scale(0.85);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.trending-slider-wrapper .slick-center .slide-item {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+.trending-slider-wrapper .slick-slide {
+  padding: 10px;
+}
+
+.trending-slider-wrapper .slick-prev:before,
+.trending-slider-wrapper .slick-next:before {
+  color: #000;
+  font-size: 50px;
+  opacity: 1;
 }

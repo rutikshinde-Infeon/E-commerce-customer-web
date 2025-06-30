@@ -1,5 +1,6 @@
 import Slider from 'react-slick';
 import './Sliders.css';
+import { Box } from '@mui/material';
 
 interface BannerDataProps {
   id: number;
@@ -23,7 +24,7 @@ function HeroCarousel({ BannerData }: BannerProps) {
   };
 
   return (
-    <div className='hero-carousel-wrapper slider-container'>
+    <Box className='slider-container' width={'100%'}>
       <Slider {...settings}>
         {BannerData?.map((banner, index) => (
           <div className='slide-item' key={index}>
@@ -37,7 +38,7 @@ function HeroCarousel({ BannerData }: BannerProps) {
           </div>
         ))}
       </Slider>
-    </div>
+    </Box>
   );
 }
 
