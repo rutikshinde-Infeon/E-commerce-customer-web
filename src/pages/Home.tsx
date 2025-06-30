@@ -1,15 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import { brandDeals, productData } from '../components/cards/brandData';
-import Slider from 'react-slick';
 import { trendingData } from '../components/cards/trendingData';
-import TrendingCard from '../components/cards/TrendingCard';
 import CustomerReviews from '../components/slider/CustomerReviews';
 import FeaturesSection from '../components/slider/FeaturesSection';
 import HeroCarousel from '../components/slider/HeroCarousel';
 import ProductSlider from '../components/slider/ProductSlider';
-
 import { heroBanner } from '../assets';
 import DealSlider from '../components/slider/DealSlider';
+import TrendingSlider from '../components/slider/TrendingSlider';
 export interface ProductData {
   id: number;
   imageSrc: string;
@@ -47,18 +45,7 @@ const Home = () => {
     },
   ];
 
-  const centerSlider = {
-    // width: "100%",
-    arrows: true,
-    className: 'center',
-    centerMode: true,
-    infinite: true,
-    centerPadding: '60px',
-    slidesToShow: 1,
-    speed: 500,
-  };
   const settings = {
-    // dots: true,
     infinite: true,
     speed: 500,
     draggable: true,
@@ -102,33 +89,19 @@ const Home = () => {
         <Typography variant='h5' sx={{ mb: 2, fontWeight: 600 }}>
           Deals of the Day
         </Typography>
-      </Box>
-      <Box p={2} className='Trending-slider-wrapper'>
         <DealSlider settings={brandSliderSettings} brandDeals={brandDeals} />
       </Box>
 
-      <Typography
-        variant='h5'
-        sx={{ mb: 3, fontWeight: 700, marginLeft: '50px' }}
-      >
-        Trending Offers
-      </Typography>
+      <Box p={2} className='trending-slider-wrapper'>
+        <Typography
+          variant='h5'
+          sx={{ mb: 3, fontWeight: 700, marginLeft: '50px' }}
+        >
+          Trending Offers
+        </Typography>
+        <TrendingSlider trendingData={trendingData} />
+      </Box>
 
-      <div className='slider-container'>
-        <Slider {...centerSlider}>
-          {trendingData.map((item) => (
-            <div key={item.id}>
-              <TrendingCard
-                id={item.id}
-                brandLogo={item.brandLogo}
-                discountText={item.discountText}
-                buttonText={item.buttonText}
-                imageUrl={item.imageUrl}
-              />
-            </div>
-          ))}
-        </Slider>
-      </div>
       <CustomerReviews />
       <FeaturesSection />
     </>
