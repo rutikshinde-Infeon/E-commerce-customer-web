@@ -34,7 +34,7 @@ const About = () => {
           variant="h5"
           component="h5"
           gutterBottom
-          sx={{ fontSize: { xs: "24px", sm: "28px", md: "36px" } }}
+          sx={{ fontSize: { xs: "24px", sm: "28px", md: "30px" } }}
         >
           About Us
         </Typography>
@@ -114,7 +114,7 @@ const About = () => {
       </Box>
 
       {/* Right - Image Section */}
-    <Box
+      <Box
         sx={{
           flex: 1,
           display: "flex",

@@ -11,6 +11,8 @@ import ProductSlider from "../components/slider/ProductSlider";
 import { heroBanner } from "../assets";
 import DealSlider from "../components/slider/DealSlider";
 import FeaturedBlog from "../components/slider/FeaturedBlog";
+import About from "../components/common/About";
+import ShopCategoriesSection from "../components/common/ShopCategoriesSection";
 export interface ProductData {
   id: number;
   imageSrc: string;
@@ -127,6 +129,13 @@ const Home = () => {
           ))}
         </Slider>
       </div>
+
+      {/* <Box p={2} className="Categories-wrapper">
+        <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
+          Shop By Categories
+        </Typography>
+        <ShopCategoriesSection></ShopCategoriesSection>
+      </Box> */}
       <Box p={2} className="Review-slider-wrapper">
         <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
           What Our Customers Say
@@ -141,6 +150,9 @@ const Home = () => {
         <FeaturedBlog></FeaturedBlog>
         <FeaturesSection />
       </Box>
+      {/* <Box p={2} className="AboutUs-wrapper">
+        <About></About>
+      </Box> */}
     </>
   );
 };

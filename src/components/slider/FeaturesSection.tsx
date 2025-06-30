@@ -9,27 +9,27 @@ import OutlinedFlagIcon from "@mui/icons-material/OutlinedFlag";
 
 const features = [
   {
-    icon: <OutlinedFlagIcon fontSize="large" />,
+    icon: <OutlinedFlagIcon fontSize="large" sx={{ fontSize: "56px" }} />,
     title: "Locally Owned",
     description: "We have local business and sell best quality clothes",
   },
   {
-    icon: <LocalShippingIcon fontSize="large" />,
+    icon: <LocalShippingIcon sx={{ fontSize: "56px" }} />,
     title: "Fast Delivery",
     description: "We provide fast delivery to our customers",
   },
   {
-    icon: <Inventory2OutlinedIcon fontSize="large" />,
+    icon: <Inventory2OutlinedIcon sx={{ fontSize: "56px" }} />,
     title: "Easy Return",
     description: "We provide easy return policy.",
   },
   {
-    icon: <HeadsetMicOutlinedIcon fontSize="large" />,
+    icon: <HeadsetMicOutlinedIcon sx={{ fontSize: "56px" }} />,
     title: "Online Support",
     description: "We give 24/7 online support",
   },
   {
-    icon: <LocalOfferOutlinedIcon fontSize="large" />,
+    icon: <LocalOfferOutlinedIcon sx={{ fontSize: "56px" }} />,
     title: "Best Offers",
     description: "We give best offers to our customers",
   },
@@ -71,10 +71,13 @@ const FeaturesSection = () => {
               }}
             >
               <Box color="#2d3a4b">{feature.icon}</Box>
-              <Typography variant="h6" fontWeight="bold" mt={2}>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: 700, mt: 2, fontSize: "24px" }}
+              >
                 {feature.title}
               </Typography>
-              <Typography variant="body2" mt={1} color="text.secondary">
+              <Typography variant="body2" sx={{ mt: 1 }} color="text.secondary">
                 {feature.description}
               </Typography>
             </Paper>
