@@ -1,0 +1,9 @@
+.trendingCard {
+  max-width: "1145px";
+  height: "587px";
+  border-radius: "12px";
+  overflow: "hidden";
+  box-shadow: 3;
+  display: "flex";
+  margin: "auto";
+}

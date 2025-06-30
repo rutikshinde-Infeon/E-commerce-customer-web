@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
-
+import styles from "./BrandCard.module.css";
 interface BrandCardProps {
   image: string; // product/banner image
   brandLogo: string; // brand logo image
@@ -12,19 +12,34 @@ function BrandCard(props: BrandCardProps) {
   const { image, brandLogo, tagline, priceRange } = props;
 
   return (
-    <Card sx={{ maxWidth: 489, borderRadius: 10, boxShadow: 2 }}>
+    <Card className={styles.brandCard}>
       <CardMedia
         component="img"
-        height="298"
+        sx={{ objectFit: "cover", maxHeight: 300, width: "100%" }}
         image={image}
         alt="Product image"
+        className="product-image"
       />
       <CardContent sx={{ textAlign: "center" }}>
-        <Box mb={1}>
-          <img src={brandLogo} alt="Brand logo" style={{ height: 62 }} />
+        <Box sx={{ px: 1, justifyItems: "center" }}>
+          <img
+            src={brandLogo}
+            alt="Brand logo"
+            style={{ height: 62, width: 152 }}
+          />
         </Box>
-        <Typography variant="h6">{tagline}</Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="h6"
+          sx={{
+            mt: 3,
+            fontSize: 43,
+            fontFamily: "Libre Baskerville",
+            fontWeight: 700,
+          }}
+        >
+          {tagline}
+        </Typography>
+        <Typography variant="body2" sx={{ fontSize: 24, fontWeight: 700 }}>
           {priceRange}
         </Typography>
       </CardContent>

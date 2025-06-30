@@ -1,10 +1,11 @@
 import ProductCard from "../components/cards/ProductCard";
-import { Box, Container, flex, styled } from "@mui/system";
+import { Box, Container, flex, styled, width } from "@mui/system";
 import { Grid, IconButton, Typography } from "@mui/material";
 import BrandCard from "../components/cards/BrandCard";
 import { brandDeals } from "../components/cards/brandData";
 import Slider from "react-slick";
-
+import { trendingData } from "../components/cards/trendingData";
+import TrendingCard from "../components/cards/TrendingCard";
 export interface ProductData {
   id: number;
   imageSrc: string;
@@ -97,12 +98,19 @@ const Home = () => {
     },
   ];
 
+  const centerSlider = {
+    // width: "100%",
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 1,
+    speed: 500,
+  };
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
     draggable: true,
     swipeToSlide: true,
     touchMove: true,
@@ -113,36 +121,78 @@ const Home = () => {
     ],
   };
 
+  const productSliderSettings = {
+    ...settings,
+    slidesToShow: 4,
+  };
+
+  const brandSliderSettings = {
+    ...settings,
+    slidesToShow: 3,
+  };
   return (
     <>
-      <Box sx={{ width: "100%", overflowX: "visible" }}>
-        <Slider {...settings}>
-          {dummyData.map((product: ProductData) => (
-            <ProductCard
-              key={`${product.title}-${Math.random()}`}
-              {...product}
-            />
-          ))}
-        </Slider>
-      </Box>
+      <Box Container>
+        <Box sx={{ width: "100%", marginLeft: "50px" }}>
+          <Typography
+            variant="h5"
+            sx={{ mb: 3, fontWeight: 700, fontFamily: "Libre Baskerville" }}
+          >
+            Trending Now
+          </Typography>
+          <Slider {...productSliderSettings}>
+            {dummyData.map((product: ProductData) => (
+              <Box key={product.id} px={1}>
+                <ProductCard {...product} />
+              </Box>
+            ))}
+          </Slider>
+        </Box>
 
-      <Container sx={{ mt: 4 }}>
-        <Typography variant="h5" sx={{ mb: 2, fontWeight: 600 }}>
-          Deals of the Day
-        </Typography>
-        <Grid container spacing={2}>
-          {brandDeals.map((deal, index) => (
-            <Grid item key={index} xs={12} sm={6} md={2.4}>
-              <BrandCard
-                image={deal.image}
-                brandLogo={deal.brandLogo}
-                tagline={deal.tagline}
-                priceRange={deal.priceRange}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+        <Box sx={{ width: "100%", marginLeft: "50px" }}>
+          <Typography variant="h5" sx={{ mb: 2, fontWeight: 600 }}>
+            Deals of the Day
+          </Typography>
+
+          <Slider {...brandSliderSettings}>
+            {brandDeals.map((deal, index) => (
+              <Box key={index} px={1}>
+                <BrandCard
+                  key={index}
+                  image={deal.image}
+                  brandLogo={deal.brandLogo}
+                  tagline={deal.tagline}
+                  priceRange={deal.priceRange}
+                />
+              </Box>
+            ))}
+          </Slider>
+        </Box>
+
+        <Box sx={{ width: "100%" }}>
+          <Typography
+            variant="h5"
+            sx={{ mb: 3, fontWeight: 700, marginLeft: "50px" }}
+          >
+            Trending Offers
+          </Typography>
+          <div className="slider-container">
+            <Slider {...centerSlider}>
+              {trendingData.map((item) => (
+                <div key={item.id}>
+                  <TrendingCard
+                    id={item.id}
+                    brandLogo={item.brandLogo}
+                    discountText={item.discountText}
+                    buttonText={item.buttonText}
+                    imageUrl={item.imageUrl}
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </Box>
+      </Box>
     </>
   );
 };
