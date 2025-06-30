@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  TextField,
-  InputAdornment,
-  IconButton
-} from '@mui/material';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
 import { Search as SearchIcon, Clear as ClearIcon } from '@mui/icons-material';
 
 interface SearchBarProps {
@@ -30,39 +26,37 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   return (
     <form onSubmit={handleSearch}>
       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Search Here..."
+        variant='outlined'
+        size='small'
+        placeholder='Search Here...'
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         InputProps={{
           startAdornment: searchQuery && (
-            <InputAdornment position="start">
-              <IconButton
-                edge="start"
-                size="small"
-                onClick={handleClear}
-              >
-                <ClearIcon fontSize="small" />
+            <InputAdornment position='start'>
+              <IconButton edge='start' size='small' onClick={handleClear}>
+                <ClearIcon fontSize='small' />
               </IconButton>
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                edge="end"
-                size="small"
-                type="submit"
-              >
-                <SearchIcon color="action" />
+            <InputAdornment position='end'>
+              <IconButton edge='end' size='small' type='submit'>
+                <SearchIcon color='action' />
               </IconButton>
             </InputAdornment>
           ),
           sx: {
-              // height:"52px",
+            // height:"52px",
             backgroundColor: '#f5f5f5', // Grey background
             borderRadius: 2,
-            minWidth: 400,
+            minWidth: 380,
+            '@media (max-width: 1300px)': {
+              minWidth: 300,
+            },
+            '@media (max-width: 1200px)': {
+              minWidth: 200,
+            },
             '& .MuiOutlinedInput-notchedOutline': {
               border: 'none', // Remove border
             },
@@ -71,8 +65,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
             },
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
               border: 'none', // Remove border when focused
-            }
-          }
+            },
+          },
         }}
       />
     </form>

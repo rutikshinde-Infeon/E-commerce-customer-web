@@ -1,6 +1,5 @@
-import React from 'react';
 import type { FeaturedBlogProps } from '../cards/FeaturedBlogCard';
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import Slider from 'react-slick';
 import FeaturedBlogCard from '../cards/FeaturedBlogCard';
 
@@ -43,9 +42,9 @@ function FeaturedBlog() {
     arrows: false,
     responsive: [
       {
-        breakpoint: 960,
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 1.2,
+          slidesToShow: 1,
         },
       },
       {
@@ -60,7 +59,7 @@ function FeaturedBlog() {
     <>
       <Box sx={{ py: 8 }}>
         <Slider {...settings}>
-          {dummyBlogs.map((blog, index) => (
+          {dummyBlogs?.map((blog, index) => (
             <Box key={index} px={1}>
               <FeaturedBlogCard {...blog} />
             </Box>

@@ -1,5 +1,3 @@
-// src/components/FeaturedBlogCard.tsx
-import React from 'react';
 import { Card, CardContent, CardMedia, Typography, Box } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import './FeaturedBlogCard.css';
@@ -28,6 +26,7 @@ function FeaturedBlogCard({
           image={image}
           alt={title}
         />
+
         <CardContent className='featured-blog-content'>
           {tag && <Typography className='featured-blog-tag'>{tag}</Typography>}
           <Typography className='featured-blog-title'>{title}</Typography>

@@ -11,7 +11,8 @@
 }
 
 .featured-blog-image {
-  max-width: 460px;
+  /* max-width: 460px; */
+  width: 70% !important;
   object-fit: cover;
 }
 

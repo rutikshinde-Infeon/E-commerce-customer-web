@@ -10,6 +10,7 @@ import type { ProductData } from '../../pages/Home';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
 const ProductCard = ({
+  id,
   imageSrc,
   title,
   brand,
@@ -20,12 +21,12 @@ const ProductCard = ({
 }: ProductData) => {
   const navigate = useNavigate();
 
-  const handleCardClick = () => {
-    navigate(`/`);
+  const handleCardClick = (id: number) => {
+    navigate(`product/${id}`);
   };
   return (
     <>
-      <Card className={styles.productCard} onClick={handleCardClick}>
+      <Card className={styles.productCard} onClick={() => handleCardClick(id)}>
         <CardMedia
           component='img'
           image={imageSrc}
@@ -34,7 +35,7 @@ const ProductCard = ({
           className='product-image'
         />
         <CardContent>
-          <Typography variant='subtitle1' fontSize={24} fontWeight={700}>
+          <Typography variant='subtitle1' fontSize={20} fontWeight={700}>
             {title}
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>

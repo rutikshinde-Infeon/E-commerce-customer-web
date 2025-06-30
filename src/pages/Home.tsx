@@ -103,30 +103,6 @@ const Home = () => {
         <TrendingSlider trendingData={trendingData} />
       </Box>
 
-      <div className="slider-container">
-        <Slider {...centerSlider}>
-          {trendingData.map((item) => (
-            <div key={item.id}>
-              <TrendingCard
-                id={item.id}
-                brandLogo={item.brandLogo}
-                discountText={item.discountText}
-                buttonText={item.buttonText}
-                imageUrl={item.imageUrl}
-              />
-            </div>
-          ))}
-        </Slider>
-      </div>
-
-      {/* <Box p={2} className="Categories-wrapper">
-        <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
-          Shop By Categories
-        </Typography>
-        <ShopCategoriesSection></ShopCategoriesSection>
-      </Box> */}
-      <Box p={2} className="Review-slider-wrapper">
-        <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
       <Box p={2} className='Review-slider-wrapper'>
         <Typography variant='h5' sx={{ mb: 3, fontWeight: 700 }}>
           What Our Customers Say
@@ -141,9 +117,6 @@ const Home = () => {
         <FeaturedBlog />
         <FeaturesSection />
       </Box>
-      {/* <Box p={2} className="AboutUs-wrapper">
-        <About></About>
-      </Box> */}
     </>
   );
 };
