@@ -1,16 +1,14 @@
-import React from "react";
 import {
   Card,
   CardMedia,
   CardContent,
   Typography,
   Box,
-  Stack,
   Chip,
-} from "@mui/material";
-import type { ProductData } from "../../pages/Home";
-import { useNavigate } from "react-router-dom";
-import styles from "./ProductCard.module.css";
+} from '@mui/material';
+import type { ProductData } from '../../pages/Home';
+import { useNavigate } from 'react-router-dom';
+import styles from './ProductCard.module.css';
 const ProductCard = ({
   imageSrc,
   title,
@@ -23,39 +21,39 @@ const ProductCard = ({
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    // navigate(`/product-detail`);
+    navigate(`/`);
   };
   return (
     <>
       <Card className={styles.productCard} onClick={handleCardClick}>
         <CardMedia
-          component="img"
+          component='img'
           image={imageSrc}
           alt={title}
-          sx={{ objectFit: "cover", maxHeight: 300, width: "100%" }}
-          className="product-image"
+          sx={{ objectFit: 'cover', maxHeight: 300, width: '100%' }}
+          className='product-image'
         />
         <CardContent>
-          <Typography variant="subtitle1" fontSize={24} fontWeight={700}>
+          <Typography variant='subtitle1' fontSize={24} fontWeight={700}>
             {title}
           </Typography>
-          <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-            <Typography variant="body2" color="text.secondary">
+          <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+            <Typography variant='body2' color='text.secondary'>
               {brand}
             </Typography>
-            <Typography variant="body2" sx={{ ml: 1, color: "text.primary" }}>
+            <Typography variant='body2' sx={{ ml: 1, color: 'text.primary' }}>
               {rating} ⭐
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-            <Typography variant="body1" sx={{ fontWeight: "bold", mr: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+            <Typography variant='body1' sx={{ fontWeight: 'bold', mr: 1 }}>
               Rs.{price}
             </Typography>
             <Typography
-              variant="body2"
+              variant='body2'
               sx={{
-                textDecoration: "line-through",
-                color: "text.secondary",
+                textDecoration: 'line-through',
+                color: 'text.secondary',
                 mr: 1,
               }}
             >
@@ -64,12 +62,12 @@ const ProductCard = ({
             (
             <Chip
               label={`${discount}% off`}
-              size="small"
+              size='small'
               sx={{
-                backgroundColor: "#f5f5f5",
-                color: " #0A8200",
-                fontSize: "0.75rem",
-                height: "20px",
+                backgroundColor: '#f5f5f5',
+                color: ' #0A8200',
+                fontSize: '0.75rem',
+                height: '20px',
               }}
             />
             )

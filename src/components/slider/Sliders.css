@@ -1,0 +1,36 @@
+.hero-carousel-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.slide-item {
+  height: auto;
+  /* min-height: 500px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.slide-image {
+  width: 100%;
+}
+
+/* hero -carousel CSS */
+
+.hero-carousel-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.slick-dots {
+  bottom: 0px;
+}
+
+.slick-dots li button:before {
+  color: rgb(12, 4, 79) !important;
+  font-size: 15px !important;
+}

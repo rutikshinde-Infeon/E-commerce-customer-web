@@ -1,9 +1,5 @@
-import reactLogo from './icons/react.svg';
 import navLogo from './icons/navLogo.svg';
 import footerLogo from './icons/footerLogo.svg';
+import heroBanner from './images/heroBanner.png';
 
-export {
-    reactLogo,
-    navLogo,
-    footerLogo  
-}
+export { navLogo, footerLogo, heroBanner };

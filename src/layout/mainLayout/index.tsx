@@ -1,26 +1,17 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import Navbar from "../../components/common/Navbar";
-import Footer from "../../components/common/Footer";
-import Corousel from "../../components/slider/Corousel";
-import About from "../../components/common/About";
-import FeaturesSection from "../../components/slider/FeaturesSection";
-import CustomerReviews from "../../components/slider/CustomerReviews";
+import { Outlet } from 'react-router-dom';
+import Navbar from '../../components/common/Navbar';
+import Footer from '../../components/common/Footer';
+import { Box } from '@mui/material';
 
 const MainLayout = () => {
   return (
-    <div className="main-layout">
+    <Box maxWidth={'100%'} margin={'auto'}>
       <Navbar />
-      <Corousel />
-
-      <main>
+      <div className='body-wrapper'>
         <Outlet />
-      </main>
-      <CustomerReviews />
-      <FeaturesSection />
-      <About />
+      </div>
       <Footer />
-    </div>
+    </Box>
   );
 };
 
