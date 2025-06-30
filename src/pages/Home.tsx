@@ -1,15 +1,16 @@
-import { Box, Typography } from '@mui/material';
-import { brandDeals, productData } from '../components/cards/brandData';
-import Slider from 'react-slick';
-import { trendingData } from '../components/cards/trendingData';
-import TrendingCard from '../components/cards/TrendingCard';
-import CustomerReviews from '../components/slider/CustomerReviews';
-import FeaturesSection from '../components/slider/FeaturesSection';
-import HeroCarousel from '../components/slider/HeroCarousel';
-import ProductSlider from '../components/slider/ProductSlider';
+import { Box, Typography } from "@mui/material";
+import { brandDeals, productData } from "../components/cards/brandData";
+import Slider from "react-slick";
+import { trendingData } from "../components/cards/trendingData";
+import TrendingCard from "../components/cards/TrendingCard";
+import CustomerReviews from "../components/slider/CustomerReviews";
+import FeaturesSection from "../components/slider/FeaturesSection";
+import HeroCarousel from "../components/slider/HeroCarousel";
+import ProductSlider from "../components/slider/ProductSlider";
 
-import { heroBanner } from '../assets';
-import DealSlider from '../components/slider/DealSlider';
+import { heroBanner } from "../assets";
+import DealSlider from "../components/slider/DealSlider";
+import FeaturedBlog from "../components/slider/FeaturedBlog";
 export interface ProductData {
   id: number;
   imageSrc: string;
@@ -33,27 +34,27 @@ const Home = () => {
     {
       id: 1,
       imageSrc: heroBanner,
-      path: '/',
+      path: "/",
     },
     {
       id: 2,
       imageSrc: heroBanner,
-      path: '/',
+      path: "/",
     },
     {
       id: 3,
       imageSrc: heroBanner,
-      path: '/',
+      path: "/",
     },
   ];
 
   const centerSlider = {
     // width: "100%",
     arrows: true,
-    className: 'center',
+    className: "center",
     centerMode: true,
     infinite: true,
-    centerPadding: '60px',
+    centerPadding: "60px",
     slidesToShow: 1,
     speed: 500,
   };
@@ -84,12 +85,12 @@ const Home = () => {
   };
   return (
     <>
-      <Box className='hero-carousel-wrapper'>
+      <Box className="hero-carousel-wrapper">
         <HeroCarousel BannerData={BannerData} />
       </Box>
 
-      <Box p={2} className='product-slider-wrapper'>
-        <Typography variant='h5' sx={{ mb: 3, fontWeight: 700 }}>
+      <Box p={2} className="product-slider-wrapper">
+        <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
           Trending Now
         </Typography>
         <ProductSlider
@@ -98,23 +99,20 @@ const Home = () => {
         />
       </Box>
 
-      <Box p={2} className='deal-slider-wrapper'>
-        <Typography variant='h5' sx={{ mb: 2, fontWeight: 600 }}>
+      <Box p={2} className="deal-slider-wrapper">
+        <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
           Deals of the Day
         </Typography>
       </Box>
-      <Box p={2} className='Trending-slider-wrapper'>
+      <Box p={2} className="Trending-slider-wrapper">
         <DealSlider settings={brandSliderSettings} brandDeals={brandDeals} />
       </Box>
 
-      <Typography
-        variant='h5'
-        sx={{ mb: 3, fontWeight: 700, marginLeft: '50px' }}
-      >
+      <Typography variant="h5" sx={{ mb: 3, fontWeight: 700, padding: 2 }}>
         Trending Offers
       </Typography>
 
-      <div className='slider-container'>
+      <div className="slider-container">
         <Slider {...centerSlider}>
           {trendingData.map((item) => (
             <div key={item.id}>
@@ -129,8 +127,20 @@ const Home = () => {
           ))}
         </Slider>
       </div>
-      <CustomerReviews />
-      <FeaturesSection />
+      <Box p={2} className="Review-slider-wrapper">
+        <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
+          What Our Customers Say
+        </Typography>
+        <CustomerReviews />
+      </Box>
+
+      <Box p={2} className="Featured-slider-wrapper">
+        <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
+          Featured Blogs
+        </Typography>
+        <FeaturedBlog></FeaturedBlog>
+        <FeaturesSection />
+      </Box>
     </>
   );
 };
