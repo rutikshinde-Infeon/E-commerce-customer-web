@@ -11,6 +11,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 // Import Libre Baskerville font from Google Fonts
 import '@fontsource/libre-baskerville/400.css';
 import '@fontsource/libre-baskerville/700.css';
+import './App.css';
 
 const theme = createTheme({
   typography: {

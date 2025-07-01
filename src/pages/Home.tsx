@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material';
-import { brandDeals, productData } from '../components/cards/brandData';
 import { trendingData } from '../components/cards/trendingData';
 import CustomerReviews from '../components/slider/CustomerReviews';
 import FeaturesSection from '../components/slider/FeaturesSection';
@@ -10,16 +9,9 @@ import DealSlider from '../components/slider/DealSlider';
 import TrendingSlider from '../components/slider/TrendingSlider';
 import FeaturedBlog from '../components/slider/FeaturedBlog';
 import About from '../components/common/About';
-export interface ProductDataProps {
-  id: number;
-  imageSrc: string;
-  title: string;
-  brand: string;
-  rating: string;
-  price: string;
-  originalPrice: string;
-  discount: string;
-}
+import { brandDeals, productData } from '../utils/data';
+import { mapProductToCardData } from '../utils/mapProduct';
+
 export interface BrandData {
   id: number;
   image: string;
@@ -71,6 +63,9 @@ const Home = () => {
     slidesToShow: 3,
     arrows: false,
   };
+
+  const formattedProductData = productData?.map(mapProductToCardData);
+
   return (
     <>
       <Box className='hero-carousel-wrapper'>
@@ -83,7 +78,7 @@ const Home = () => {
         </Typography>
         <ProductSlider
           settings={productSliderSettings}
-          productData={productData}
+          productData={formattedProductData}
         />
       </Box>
 

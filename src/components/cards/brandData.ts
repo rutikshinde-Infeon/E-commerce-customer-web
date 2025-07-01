@@ -1,12 +1,4 @@
-export interface BrandDeal {
-  id: number;
-  image: string;
-  brandLogo: string;
-  tagline: string;
-  priceRange: string;
-}
-
-export const brandDeals: BrandDeal[] = [
+export const DummyBrandDeals = [
   {
     id: 1,
     image:
@@ -49,7 +41,7 @@ export const brandDeals: BrandDeal[] = [
   },
 ];
 
-export const productData = [
+export const DummyProductData = [
   {
     id: 1,
     imageSrc:

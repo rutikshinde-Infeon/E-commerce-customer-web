@@ -6,9 +6,9 @@ import {
   Box,
   Chip,
 } from '@mui/material';
-import type { ProductData } from '../../pages/Home';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
+import type { ProductDataProps } from '../../utils/types/interface';
 const ProductCard = ({
   id,
   imageSrc,
@@ -18,11 +18,11 @@ const ProductCard = ({
   price,
   originalPrice,
   discount,
-}: ProductData) => {
+}: ProductDataProps) => {
   const navigate = useNavigate();
 
-  const handleCardClick = (id: number) => {
-    navigate(`product/${id}`);
+  const handleCardClick = (id: string) => {
+    navigate(`/product/${id}`);
   };
   return (
     <>
