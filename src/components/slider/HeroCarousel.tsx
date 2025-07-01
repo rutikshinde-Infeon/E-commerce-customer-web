@@ -2,12 +2,12 @@ import Slider from 'react-slick';
 import './Sliders.css';
 import { Box } from '@mui/material';
 
-interface BannerDataProps {
+export interface BannerDataProps {
   id: number;
   imageSrc: string;
   path: string;
 }
-interface BannerProps {
+export interface BannerProps {
   BannerData: BannerDataProps[];
 }
 
