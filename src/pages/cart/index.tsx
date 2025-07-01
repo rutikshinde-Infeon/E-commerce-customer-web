@@ -1,9 +1,11 @@
-import React from 'react'
+import { Container } from '@mui/material';
 
 const Cart = () => {
   return (
-    <div>Cart</div>
-  )
-}
+    <Container sx={{ p: 1 }} maxWidth='xl'>
+      Cart
+    </Container>
+  );
+};
 
-export default Cart
+export default Cart;
