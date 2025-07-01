@@ -9,7 +9,8 @@ import { heroBanner } from '../assets';
 import DealSlider from '../components/slider/DealSlider';
 import TrendingSlider from '../components/slider/TrendingSlider';
 import FeaturedBlog from '../components/slider/FeaturedBlog';
-export interface ProductData {
+import About from '../components/common/About';
+export interface ProductDataProps {
   id: number;
   imageSrc: string;
   title: string;
@@ -94,10 +95,7 @@ const Home = () => {
       </Box>
 
       <Box p={2} className='trending-slider-wrapper'>
-        <Typography
-          variant='h5'
-          sx={{ mb: 3, fontWeight: 700, marginLeft: '50px' }}
-        >
+        <Typography variant='h5' sx={{ mb: 3, fontWeight: 700 }}>
           Trending Offers
         </Typography>
         <TrendingSlider trendingData={trendingData} />
@@ -116,6 +114,9 @@ const Home = () => {
         </Typography>
         <FeaturedBlog />
         <FeaturesSection />
+      </Box>
+      <Box p={2} className='AboutUs-wrapper'>
+        <About />
       </Box>
     </>
   );
