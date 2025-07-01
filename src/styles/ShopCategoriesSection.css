@@ -1,0 +1,46 @@
+/* src/styles/ShopCategoriesSection.css */
+
+.category-tile {
+  width: 590px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 16px;
+  color: white;
+}
+
+.category-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.category-label {
+  position: relative;
+  z-index: 1;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Size variants */
+.large {
+  height: 685px;
+  max-width: 590px;
+}
+
+.tall {
+  height: 330px;
+  max-width: 590px;
+}
+
+.small {
+  height: 330px;
+  max-width: 280px;
+}

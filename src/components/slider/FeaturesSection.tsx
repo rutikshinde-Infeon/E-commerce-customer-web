@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, Typography, Grid, Paper } from '@mui/material';
+import { Box, Typography, Paper } from '@mui/material';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import HeadsetMicOutlinedIcon from '@mui/icons-material/HeadsetMicOutlined';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import OutlinedFlagIcon from '@mui/icons-material/OutlinedFlag';
+import Grid from '@mui/material/Grid';
 
 const features = [
   {

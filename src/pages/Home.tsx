@@ -12,6 +12,18 @@ import About from '../components/common/About';
 import { brandDeals, productData } from '../utils/data';
 import { mapProductToCardData } from '../utils/mapProduct';
 
+import ShopCategoriesSection from '../components/common/ShopCategoriesSection';
+import MixBanner from '../components/common/MixBanner';
+export interface ProductDataProps {
+  id: number;
+  imageSrc: string;
+  title: string;
+  brand: string;
+  rating: string;
+  price: string;
+  originalPrice: string;
+  discount: string;
+}
 export interface BrandData {
   id: number;
   image: string;
@@ -95,7 +107,15 @@ const Home = () => {
         </Typography>
         <TrendingSlider trendingData={trendingData} />
       </Box>
-
+      <Box>
+        <MixBanner />
+      </Box>
+      <Box p={2} className='ShopCategories-wrapper'>
+        <Typography variant='h5' sx={{ mb: 3, fontWeight: 700 }}>
+          Shop by Categories
+        </Typography>
+        <ShopCategoriesSection />
+      </Box>
       <Box p={2} className='Review-slider-wrapper'>
         <Typography variant='h5' sx={{ mb: 3, fontWeight: 700 }}>
           What Our Customers Say
