@@ -1,14 +1,24 @@
-import React from 'react';
-import { dummyProducts } from '../productDummyJason';
+import { useState } from 'react';
 import {
-  Card,
-  CardContent,
+  Box,
   Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Divider,
+  Paper,
   IconButton,
   Button,
+  Stack,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import SellIcon from '@mui/icons-material/Sell';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import { dummyProducts } from '../productDummyJason';
 
 interface Props {
   cart: typeof dummyProducts;
@@ -16,38 +26,188 @@ interface Props {
   nextStep: () => void;
 }
 
-const Cart: React.FC<Props> = ({ cart, updateQuantity, nextStep }) => {
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+const Cart = ({ cart, updateQuantity, nextStep }: Props) => {
+  const [offersExpanded, setOffersExpanded] = useState(false);
+  const [couponExpanded, setCouponExpanded] = useState(false);
+
+  const totalMRP = cart.reduce(
+    (sum, item) => sum + item.originalPrice * item.quantity,
+    0
+  );
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const discount = totalMRP - total;
+  const couponDiscount = 400;
+  const finalTotal = total - couponDiscount;
+
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <div className='cart-section'>
-      <h2>My Cart ({cart.length})</h2>
-      {cart.map((item) => (
-        <Card key={item.id} className='cart-card'>
-          <CardContent className='cart-card-content'>
-            <div>
-              <Typography variant='subtitle1'>{item.name}</Typography>
-              <Typography variant='body2'>₹{item.price} each</Typography>
-            </div>
-            <div className='qty-controls'>
-              <IconButton onClick={() => updateQuantity(item.id, -1)}>
-                <RemoveIcon />
-              </IconButton>
-              <Typography>{item.quantity}</Typography>
-              <IconButton onClick={() => updateQuantity(item.id, 1)}>
-                <AddIcon />
-              </IconButton>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-      <div className='cart-summary'>
-        <h3>Total: ₹{total}</h3>
-        <Button variant='contained' onClick={nextStep}>
-          Continue to Address
-        </Button>
-      </div>
-    </div>
+    <Box className='cart-section'>
+      <Stack direction={isMdUp ? 'row' : 'column'} spacing={4}>
+        <Box flex={1}>
+          <Accordion
+            expanded={offersExpanded}
+            onChange={() => setOffersExpanded(!offersExpanded)}
+            className='cart-accordion'
+          >
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Box display='flex' alignItems='center'>
+                <SellIcon fontSize='small' sx={{ mr: 1 }} />
+                <Typography>Available Offers</Typography>
+              </Box>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>10% off on select products</Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={couponExpanded}
+            onChange={() => setCouponExpanded(!couponExpanded)}
+            className='cart-accordion'
+          >
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Box display='flex' alignItems='center'>
+                <LocalOfferIcon fontSize='small' sx={{ mr: 1 }} />
+                <Typography>Apply Coupons</Typography>
+              </Box>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>No coupons available</Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Typography variant='h6' className='cart-section-title'>
+            My Cart ({cart.length})
+          </Typography>
+          <Stack spacing={2}>
+            {cart.map((item) => (
+              <Paper key={item.id} className='cart-item'>
+                <Stack
+                  direction='row'
+                  alignItems='center'
+                  spacing={2}
+                  width='100%'
+                >
+                  {/* Image */}
+                  <Box className='cart-item-image'>
+                    <img src={item.image || ''} alt={item.name} />
+                  </Box>
+
+                  {/* Info */}
+                  <Box className='cart-item-info'>
+                    <Typography fontWeight={500}>{item.name}</Typography>
+                    <Typography variant='body2' color='text.secondary'>
+                      Save for Later | Remove
+                    </Typography>
+                  </Box>
+
+                  {/* Qty & Price */}
+                  <Box className='cart-item-price'>
+                    <Stack
+                      direction='row'
+                      alignItems='center'
+                      justifyContent='flex-end'
+                      spacing={1}
+                    >
+                      <IconButton
+                        size='small'
+                        onClick={() => updateQuantity(item.id, -1)}
+                      >
+                        <RemoveIcon />
+                      </IconButton>
+                      <Typography>{item.quantity}</Typography>
+                      <IconButton
+                        size='small'
+                        onClick={() => updateQuantity(item.id, 1)}
+                      >
+                        <AddIcon />
+                      </IconButton>
+                    </Stack>
+                    <Typography fontWeight={600} mt={1}>
+                      ₹{item.price}
+                    </Typography>
+                    <Typography
+                      variant='body2'
+                      color='text.secondary'
+                      sx={{ textDecoration: 'line-through' }}
+                    >
+                      ₹{item.originalPrice}
+                    </Typography>
+                  </Box>
+                </Stack>
+              </Paper>
+            ))}
+          </Stack>
+        </Box>
+
+        {/* Right Column */}
+        <Box flex={isMdUp ? '0 0 320px' : '1'}>
+          <Box className='cart-summary-box'>
+            <Typography fontWeight={600} mb={1}>
+              Delivery Address
+            </Typography>
+            <Stack
+              direction='row'
+              justifyContent='space-between'
+              alignItems='center'
+              mb={2}
+            >
+              <Typography>
+                Bangalore <strong>530086</strong>
+              </Typography>
+              <Button size='small' variant='text'>
+                Change
+              </Button>
+            </Stack>
+
+            <Divider sx={{ mb: 2 }} />
+
+            <Typography fontWeight={600} mb={1}>
+              Payment Summary
+            </Typography>
+
+            <Stack spacing={1}>
+              <Box className='cart-summary-line'>
+                <span>Total MRP</span>
+                <span>₹{totalMRP}</span>
+              </Box>
+              <Box className='cart-summary-line'>
+                <span>Discount on MRP</span>
+                <span style={{ color: 'green' }}>-₹{discount}</span>
+              </Box>
+              <Box className='cart-summary-line'>
+                <span>Coupon savings</span>
+                <span style={{ color: 'green' }}>-₹{couponDiscount}</span>
+              </Box>
+              <Box className='cart-summary-line'>
+                <span>Applicable GST</span>
+                <span>₹0.00</span>
+              </Box>
+              <Box className='cart-summary-line'>
+                <span>Delivery</span>
+                <span style={{ color: 'green' }}>Free</span>
+              </Box>
+            </Stack>
+
+            <Divider sx={{ my: 2 }} />
+
+            <Box className='cart-summary-line cart-summary-total'>
+              <span>Total</span>
+              <span>₹{finalTotal}</span>
+            </Box>
+
+            <Button
+              fullWidth
+              variant='contained'
+              className='place-order-button'
+              onClick={() => nextStep()}
+            >
+              PLACE ORDER
+            </Button>
+          </Box>
+        </Box>
+      </Stack>
+    </Box>
   );
 };
 

@@ -1,3 +1,5 @@
+import img from '../../assets/images/PDP-image.png';
+
 export const dummyProducts = [
   {
     id: 1,
@@ -5,7 +7,7 @@ export const dummyProducts = [
     price: 2150,
     originalPrice: 3200,
     quantity: 1,
-    image: '/images/havells.jpg',
+    image: img,
   },
   {
     id: 2,
@@ -13,7 +15,7 @@ export const dummyProducts = [
     price: 2150,
     originalPrice: 2950,
     quantity: 1,
-    image: '/images/clipsal1.jpg',
+    image: img,
   },
   {
     id: 3,
@@ -21,6 +23,6 @@ export const dummyProducts = [
     price: 2150,
     originalPrice: 2950,
     quantity: 2,
-    image: '/images/clipsal2.jpg',
+    image: img,
   },
 ];
