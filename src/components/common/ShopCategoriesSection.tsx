@@ -1,5 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Typography } from '@mui/material';
 import '../../styles/ShopCategoriesSection.css';
 
 export interface Category {
@@ -42,57 +41,93 @@ const categories: Category[] = [
 
 interface CategoryTileProps {
   category: Category;
-  variant: 'large' | 'tall' | 'small';
+  height: string;
+  width?: string;
 }
 
-function CategoryTile(props: CategoryTileProps) {
-  const { category, variant } = props;
+function CategoryTile({ category, height, width = '100%' }: CategoryTileProps) {
   return (
     <Box
-      className={`category-tile ${variant}`}
-      sx={{ backgroundImage: `url(${category.image})` }}
+      sx={{
+        backgroundImage: `url(${category.image})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        borderRadius: 2,
+        height,
+        width,
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        p: 2,
+      }}
     >
-      <Typography className='category-label'>{category.name}</Typography>
+      <Typography
+        className='category-label'
+        sx={{ color: 'white', fontWeight: 'bold' }}
+      >
+        {category.name}
+      </Typography>
     </Box>
   );
 }
 
 function ShopCategoriesSection() {
   return (
-    <Box sx={{ py: 6 }}>
-      <Grid container spacing={2}>
-        {/* Left large image */}
-        <Grid item xs={12} md={6}>
-          <CategoryTile category={categories[0]} variant='large' />
-        </Grid>
+    <Box sx={{ px: 2, py: 6 }}>
+      {/* Row 1 */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: 2,
+          height: '500px',
+        }}
+      >
+        {/* Left tall tile */}
+        <Box sx={{ flex: 1 }}>
+          <CategoryTile category={categories[0]} height='100%' />
+        </Box>
 
-        {/* Two stacked images */}
-        <Grid item xs={12} md={6}>
-          <Grid container direction='column' spacing={2}>
-            {[categories[1], categories[2]].map((cat, i) => (
-              <Grid item xs={12} key={i}>
-                <CategoryTile category={cat} variant='tall' />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
+        {/* Right two stacked tiles */}
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <CategoryTile category={categories[1]} height='50%' />
+          <CategoryTile category={categories[2]} height='50%' />
+        </Box>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <CategoryTile category={categories[3]} height='50%' />
+          <CategoryTile category={categories[4]} height='50%' />
+        </Box>
+      </Box>
 
-        {/* Bottom stacked and side-by-side tiles */}
-        <Grid item xs={12} md={6}>
-          <Grid container direction='column' spacing={2}>
-            <Grid item xs={12}>
-              <CategoryTile category={categories[3]} variant='tall' />
-            </Grid>
-            <Grid container spacing={2}>
-              {[categories[4], categories[5]].map((cat, i) => (
-                <Grid item xs={6} key={i}>
-                  <CategoryTile category={cat} variant='small' />
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
+      {/* Row 2 */}
+      {/* <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: 2,
+          mt: 2,
+        }}
+      >
+        <Box sx={{ flex: 1 }}>
+          <CategoryTile category={categories[3]} height='100%' />
+        </Box>
+
+        <Box
+          sx={{
+            flex: 1,
+            display: 'flex',
+            gap: 2,
+            flexDirection: { xs: 'column', sm: 'row' },
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+            <CategoryTile category={categories[4]} height='100%' />
+          </Box>
+          <Box sx={{ flex: 1 }}>
+            <CategoryTile category={categories[5]} height='100%' />
+          </Box>
+        </Box>
+      </Box> */}
     </Box>
   );
 }

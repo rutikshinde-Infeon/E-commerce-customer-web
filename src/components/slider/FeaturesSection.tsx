@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
@@ -45,18 +44,21 @@ const FeaturesSection = () => {
       >
         {features.map((feature, idx) => (
           <Grid
-            item
             key={idx}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              width: {
-                xs: 320,
-                sm: 220,
-                md: 240,
-                lg: 260,
-              },
-            }}
+            display={'flex'}
+            justifyContent={'center'}
+            // item
+            // key={idx}
+            // sx={{
+            //   display: 'flex',
+            //   justifyContent: 'center',
+            //   width: {
+            //     xs: 320,
+            //     sm: 220,
+            //     md: 240,
+            //     lg: 260,
+            //   },
+            // }}
           >
             <Paper
               sx={{

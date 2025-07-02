@@ -1,5 +1,3 @@
-// src/components/ReviewCard.tsx
-import React from "react";
 import {
   Card,
   CardContent,
@@ -7,9 +5,8 @@ import {
   Avatar,
   Rating,
   Box,
-} from "@mui/material";
-import "./ReviewCard.css";
-import { display } from "@mui/system";
+} from '@mui/material';
+import './ReviewCard.css';
 
 export interface Review {
   image: string;
@@ -22,16 +19,16 @@ function ReviewCard(props: Review) {
   const { image, name, review, rating } = props;
 
   return (
-    <Card className="review-card">
-      <CardContent className="review-content">
-        <Avatar alt={name} src={image} className="review-avatar" />
-        <Typography className="review-name">{name}</Typography>
-        <Box className="rating-wrapper">
+    <Card className='review-card'>
+      <CardContent className='review-content'>
+        <Avatar alt={name} src={image} className='review-avatar' />
+        <Typography className='review-name'>{name}</Typography>
+        <Box className='rating-wrapper'>
           <Rating value={rating} precision={0.5} readOnly />
-          <Typography className="rating-value">{rating.toFixed(1)}</Typography>
+          <Typography className='rating-value'>{rating.toFixed(1)}</Typography>
         </Box>
 
-        <Typography className="review-text">{review}</Typography>
+        <Typography className='review-text'>{review}</Typography>
       </CardContent>
     </Card>
   );

@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from '@mui/material';
-import React from 'react';
 import HeroCarousel from '../slider/HeroCarousel';
 import '../common/MixBanner.css';
 import mixBannerImg from '../../assets/images/mixBannerImg.jpg';
