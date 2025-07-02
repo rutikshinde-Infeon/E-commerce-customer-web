@@ -80,7 +80,7 @@ function ShopCategoriesSection() {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           gap: 2,
-          height: '500px',
+          height: '600px',
         }}
       >
         {/* Left tall tile */}
@@ -98,36 +98,6 @@ function ShopCategoriesSection() {
           <CategoryTile category={categories[4]} height='50%' />
         </Box>
       </Box>
-
-      {/* Row 2 */}
-      {/* <Box
-        sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          gap: 2,
-          mt: 2,
-        }}
-      >
-        <Box sx={{ flex: 1 }}>
-          <CategoryTile category={categories[3]} height='100%' />
-        </Box>
-
-        <Box
-          sx={{
-            flex: 1,
-            display: 'flex',
-            gap: 2,
-            flexDirection: { xs: 'column', sm: 'row' },
-          }}
-        >
-          <Box sx={{ flex: 1 }}>
-            <CategoryTile category={categories[4]} height='100%' />
-          </Box>
-          <Box sx={{ flex: 1 }}>
-            <CategoryTile category={categories[5]} height='100%' />
-          </Box>
-        </Box>
-      </Box> */}
     </Box>
   );
 }
