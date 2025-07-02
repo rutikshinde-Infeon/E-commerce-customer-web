@@ -48,6 +48,7 @@
 }
 
 .cart-item {
+  background-color: #f8f8f8 !important;
   display: flex;
   justify-content: space-between;
   padding: 16px;
@@ -83,10 +84,15 @@
   text-align: right;
 }
 
+.cart-icon {
+  border: 1px solid #ccc !important;
+  border-radius: 50% !important ;
+}
 .cart-summary-box {
   border: 1px solid #eee;
   border-radius: 8px;
   padding: 16px;
+  background-color: #f8f8f8 !important;
 }
 
 .cart-summary-line {
@@ -110,6 +116,9 @@
 .place-order-button:hover {
   background-color: #ffb300;
 }
+
+/* .payment-wrapper */
+
 .payment-wrapper {
   background: #fff;
   padding: 32px;

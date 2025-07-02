@@ -16,7 +16,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import SellIcon from '@mui/icons-material/Sell';
+import DiscountIcon from '@mui/icons-material/Discount';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { dummyProducts } from '../productDummyJason';
 
@@ -53,7 +53,7 @@ const Cart = ({ cart, updateQuantity, nextStep }: Props) => {
           >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Box display='flex' alignItems='center'>
-                <SellIcon fontSize='small' sx={{ mr: 1 }} />
+                <DiscountIcon fontSize='small' sx={{ mr: 1 }} />
                 <Typography>Available Offers</Typography>
               </Box>
             </AccordionSummary>
@@ -76,7 +76,7 @@ const Cart = ({ cart, updateQuantity, nextStep }: Props) => {
               <Typography>No coupons available</Typography>
             </AccordionDetails>
           </Accordion>
-          <Typography variant='h6' className='cart-section-title'>
+          <Typography variant='h6' className='cart-section-title' mb={1}>
             My Cart ({cart.length})
           </Typography>
           <Stack spacing={2}>
@@ -107,9 +107,10 @@ const Cart = ({ cart, updateQuantity, nextStep }: Props) => {
                       direction='row'
                       alignItems='center'
                       justifyContent='flex-end'
-                      spacing={1}
+                      spacing={2}
                     >
                       <IconButton
+                        className='cart-icon'
                         size='small'
                         onClick={() => updateQuantity(item.id, -1)}
                       >
@@ -117,22 +118,23 @@ const Cart = ({ cart, updateQuantity, nextStep }: Props) => {
                       </IconButton>
                       <Typography>{item.quantity}</Typography>
                       <IconButton
+                        className='cart-icon'
                         size='small'
                         onClick={() => updateQuantity(item.id, 1)}
                       >
                         <AddIcon />
                       </IconButton>
                     </Stack>
-                    <Typography fontWeight={600} mt={1}>
-                      ₹{item.price}
-                    </Typography>
-                    <Typography
-                      variant='body2'
-                      color='text.secondary'
-                      sx={{ textDecoration: 'line-through' }}
-                    >
-                      ₹{item.originalPrice}
-                    </Typography>
+                    <Box display={'flex'} alignItems={'center'} gap={2} mt={3}>
+                      <Typography fontWeight={600}>₹{item.price}</Typography>
+                      <Typography
+                        variant='body2'
+                        color='text.secondary'
+                        sx={{ textDecoration: 'line-through' }}
+                      >
+                        ₹{item.originalPrice}
+                      </Typography>
+                    </Box>
                   </Box>
                 </Stack>
               </Paper>
@@ -142,68 +144,69 @@ const Cart = ({ cart, updateQuantity, nextStep }: Props) => {
 
         {/* Right Column */}
         <Box flex={isMdUp ? '0 0 320px' : '1'}>
-          <Box className='cart-summary-box'>
-            <Typography fontWeight={600} mb={1}>
-              Delivery Address
-            </Typography>
-            <Stack
-              direction='row'
-              justifyContent='space-between'
-              alignItems='center'
-              mb={2}
-            >
-              <Typography>
-                Bangalore <strong>530086</strong>
+          <Box>
+            <Box className='cart-summary-box' mb={2}>
+              <Typography fontWeight={600} mb={1}>
+                Delivery Address
               </Typography>
-              <Button size='small' variant='text'>
-                Change
-              </Button>
-            </Stack>
-
-            <Divider sx={{ mb: 2 }} />
-
-            <Typography fontWeight={600} mb={1}>
-              Payment Summary
-            </Typography>
-
-            <Stack spacing={1}>
-              <Box className='cart-summary-line'>
-                <span>Total MRP</span>
-                <span>₹{totalMRP}</span>
-              </Box>
-              <Box className='cart-summary-line'>
-                <span>Discount on MRP</span>
-                <span style={{ color: 'green' }}>-₹{discount}</span>
-              </Box>
-              <Box className='cart-summary-line'>
-                <span>Coupon savings</span>
-                <span style={{ color: 'green' }}>-₹{couponDiscount}</span>
-              </Box>
-              <Box className='cart-summary-line'>
-                <span>Applicable GST</span>
-                <span>₹0.00</span>
-              </Box>
-              <Box className='cart-summary-line'>
-                <span>Delivery</span>
-                <span style={{ color: 'green' }}>Free</span>
-              </Box>
-            </Stack>
-
-            <Divider sx={{ my: 2 }} />
-
-            <Box className='cart-summary-line cart-summary-total'>
-              <span>Total</span>
-              <span>₹{finalTotal}</span>
+              <Stack
+                direction='row'
+                justifyContent='space-between'
+                alignItems='center'
+                mb={2}
+              >
+                <Typography>
+                  Bangalore <strong>530086</strong>
+                </Typography>
+                <Button size='small' variant='text'>
+                  Change
+                </Button>
+              </Stack>
             </Box>
+            <Box className='cart-summary-box'>
+              <Typography fontWeight={600} mb={1}>
+                Payment Summary
+              </Typography>
 
-            <Button
-              fullWidth
-              variant='contained'
-              className='place-order-button'
-              onClick={() => nextStep()}
-            >
-              PLACE ORDER
-            </Button>
+              <Stack spacing={1}>
+                <Box className='cart-summary-line'>
+                  <span>Total MRP</span>
+                  <span>₹{totalMRP}</span>
+                </Box>
+                <Box className='cart-summary-line'>
+                  <span>Discount on MRP</span>
+                  <span style={{ color: 'green' }}>-₹{discount}</span>
+                </Box>
+                <Box className='cart-summary-line'>
+                  <span>Coupon savings</span>
+                  <span style={{ color: 'green' }}>-₹{couponDiscount}</span>
+                </Box>
+                <Box className='cart-summary-line'>
+                  <span>Applicable GST</span>
+                  <span>₹0.00</span>
+                </Box>
+                <Box className='cart-summary-line'>
+                  <span>Delivery</span>
+                  <span style={{ color: 'green' }}>Free</span>
+                </Box>
+              </Stack>
+
+              <Divider sx={{ my: 2 }} />
+
+              <Box className='cart-summary-line cart-summary-total'>
+                <span>Total</span>
+                <span>₹{finalTotal}</span>
+              </Box>
+
+              <Button
+                fullWidth
+                variant='contained'
+                className='place-order-button'
+                onClick={() => nextStep()}
+              >
+                PLACE ORDER
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Stack>
