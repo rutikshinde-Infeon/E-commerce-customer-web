@@ -16,6 +16,7 @@ import Payment from './commonComponents/Payment';
 import Success from './commonComponents/Success';
 import { dummyProducts } from './productDummyJason';
 import './Cart.css';
+import { Box, Container } from '@mui/system';
 
 const CartFlow: React.FC = () => {
   const [step, setStep] = useState<'cart' | 'address' | 'payment' | 'success'>(
@@ -38,24 +39,26 @@ const CartFlow: React.FC = () => {
   };
 
   return (
-    <div className='cart-flow-container'>
-      {step === 'cart' && (
-        <Cart
-          cart={cart}
-          updateQuantity={updateQuantity}
-          nextStep={() => setStep('address')}
-        />
-      )}
-      {step === 'address' && <Address nextStep={() => setStep('payment')} />}
-      {step === 'payment' && (
-        <Payment
-          cart={cart}
-          nextStep={() => setStep('success')}
-          resetCart={resetCart}
-        />
-      )}
-      {step === 'success' && <Success />}
-    </div>
+    <Container maxWidth='xl'>
+      <Box className='cart-flow-container'>
+        {step === 'cart' && (
+          <Cart
+            cart={cart}
+            updateQuantity={updateQuantity}
+            nextStep={() => setStep('address')}
+          />
+        )}
+        {step === 'address' && <Address nextStep={() => setStep('payment')} />}
+        {step === 'payment' && (
+          <Payment
+            cart={cart}
+            nextStep={() => setStep('success')}
+            resetCart={resetCart}
+          />
+        )}
+        {step === 'success' && <Success />}
+      </Box>
+    </Container>
   );
 };
 
