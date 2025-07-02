@@ -138,6 +138,7 @@ const Navbar: React.FC = () => {
               </Badge>
             </IconButton>
             <IconButton
+              onClick={() => navigate('/cart')}
               size='large'
               color='inherit'
               sx={{
