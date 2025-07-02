@@ -59,7 +59,7 @@ const Payment = () => {
   });
 
   return (
-    <Box className='payment-wrapper'>
+    <Box className='cart-section payment-wrapper'>
       <Box className='left-column'>
         {/* Available Offers */}
         {/* <Box className='offers-box'>
@@ -72,7 +72,7 @@ const Payment = () => {
             <li>No-cost EMI available for selected banks</li>
           </ul>
         </Box> */}
-        <Accordion defaultExpanded sx={{ mb: 3, backgroundColor: '#f8f8f8' }}>
+        <Accordion defaultExpanded sx={{ mb: 3, backgroundColor: '#ffffff' }}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls='offers-content'
@@ -104,6 +104,7 @@ const Payment = () => {
             <Typography
               variant='h5'
               fontWeight={600}
+              mb={2}
               className='section-heading'
             >
               Select Payment Mode
@@ -282,6 +283,7 @@ const Payment = () => {
           coupon={coupon}
           gst={gst}
           delivery={delivery}
+          type={paymentMode}
         />
       </Box>
     </Box>
